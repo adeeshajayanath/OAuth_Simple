@@ -1,7 +1,7 @@
 <?php
-include('config.php');
+require_once 'config.php';
 
-$login_button = ''; // set login button
+$btnlogin = ''; // set login button
 
 //This $_GET["code"] variable value received after user has login into their Google Account redirct to PHP script then this variable value has been received
 if(isset($_GET["code"]))
@@ -58,7 +58,7 @@ if(isset($_GET["code"]))
 if(!isset($_SESSION['access_token']))
 {
  //Create a URL to obtain user authorization
- $login_button = '<a href="'.$client->createAuthUrl().'"><button type="button" style="width:40%; height:80px; border-width: 0px; border-radius: 15px; background-color: #82E0AA;" class="btn-blue" id="loginbtn" type="submit"><h2 style="color: white; position: relative; top: 0px;">Click Me to login with google!</button></a>';
+ $btnlogin = '<a href="'.$client->createAuthUrl().'"><button type="button" style="width:40%; height:80px; border-width: 0px; border-radius: 15px; background-color: #82E0AA;" class="btn-blue" id="loginbtn" type="submit"><h2 style="color: white; position: relative; top: 0px;">Click Me to login with google!</button></a>';
 }
 
 ?>
@@ -82,7 +82,7 @@ if(!isset($_SESSION['access_token']))
    <br />
    <div class="panel panel-default" style="width: 60%; position: absolute; left: 20%; ">
    <?php
-   if($login_button == '')
+   if($btnlogin == '')
    {
     echo '<div >Welcome '.$_SESSION['user_last_name'].'</div><div>';
     echo '<h3><b>Name :</b> '.$_SESSION['user_last_name'].'</h3>';
@@ -98,7 +98,7 @@ if(!isset($_SESSION['access_token']))
    }
    else
    {
-    echo '<div align="center" style="width:100%;">'.$login_button . '</div>';
+    echo '<div align="center" style="width:100%;">'.$btnlogin . '</div>';
     echo "<br><br><br><br><br>";
     echo "URL = ";
     echo $client->createAuthUrl();
